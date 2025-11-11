@@ -57,11 +57,18 @@ A modern, responsive portfolio website built with React showcasing my projects, 
 ## Technical Implementation
 
 ### Technologies Used
-- **React 18.3.1**: Modern React with hooks
-- **React Router DOM 6.30.1**: Client-side routing
-- **CSS3**: Custom styling with Flexbox and Grid
-- **HTML5**: Semantic markup
-- **JavaScript ES6+**: Modern JavaScript features
+- **Frontend:**
+  - React 18.3.1: Modern React with hooks
+  - React Router DOM 6.30.1: Client-side routing
+  - Vite: Fast build tool and dev server
+  - CSS3: Custom styling with Flexbox and Grid
+- **Backend:**
+  - Node.js: JavaScript runtime
+  - Express 4.18.2: Web framework
+  - MongoDB: NoSQL database
+  - Mongoose 8.0.3: MongoDB object modeling
+  - CORS: Cross-origin resource sharing
+  - dotenv: Environment variable management
 
 ### Key Features
 - **State Management**: React hooks for form handling
@@ -91,11 +98,12 @@ src/
 ### Prerequisites
 - Node.js (version 14 or higher)
 - npm or yarn package manager
+- MongoDB Atlas account (for backend functionality)
 
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone [repository-url]
+   git clone https://github.com/Athavanyy/MyNewRepo.git
    cd athavan-portfolio
    ```
 
@@ -104,12 +112,62 @@ src/
    npm install
    ```
 
-3. Start the development server:
+3. Set up environment variables:
+   - Copy `.env.example` to `.env`:
+     ```bash
+     cp .env.example .env
+     ```
+   - Edit `.env` and add your MongoDB Atlas connection string:
+     ```env
+     MONGODB_URI=your-mongodb-connection-string-here
+     PORT=5000
+     ```
+   - Get your MongoDB connection string from [MongoDB Atlas](https://cloud.mongodb.com/)
+
+4. Start the development server (runs both frontend and backend):
    ```bash
    npm run dev
    ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+5. Open your browser:
+   - Frontend: `http://localhost:5173`
+   - Backend API: `http://localhost:5000`
+
+## Backend API Endpoints
+
+The application includes a complete REST API with the following endpoints:
+
+### Contacts API (`/api/contacts`)
+- `GET /api/contacts` - Get all contacts
+- `GET /api/contacts/:id` - Get contact by id
+- `POST /api/contacts` - Create new contact
+- `PUT /api/contacts/:id` - Update contact
+- `DELETE /api/contacts/:id` - Delete contact by id
+- `DELETE /api/contacts` - Delete all contacts
+
+### Projects API (`/api/projects`)
+- `GET /api/projects` - Get all projects
+- `GET /api/projects/:id` - Get project by id
+- `POST /api/projects` - Create new project
+- `PUT /api/projects/:id` - Update project
+- `DELETE /api/projects/:id` - Delete project by id
+- `DELETE /api/projects` - Delete all projects
+
+### Qualifications/Educations API (`/api/qualifications` or `/api/educations`)
+- `GET /api/qualifications` - Get all qualifications
+- `GET /api/qualifications/:id` - Get qualification by id
+- `POST /api/qualifications` - Create new qualification
+- `PUT /api/qualifications/:id` - Update qualification
+- `DELETE /api/qualifications/:id` - Delete qualification by id
+- `DELETE /api/qualifications` - Delete all qualifications
+
+### Users API (`/api/users`)
+- `GET /api/users` - Get all users
+- `GET /api/users/:id` - Get user by id
+- `POST /api/users` - Create new user
+- `PUT /api/users/:id` - Update user
+- `DELETE /api/users/:id` - Delete user by id
+- `DELETE /api/users` - Delete all users
 
 ## Assignment Requirements Met
 
