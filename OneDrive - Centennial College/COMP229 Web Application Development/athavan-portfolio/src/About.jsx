@@ -4,9 +4,12 @@ export default function About() {
   // Handle resume download functionality
   const handleResumeDownload = () => {
     // Create a link element to download the resume PDF
+    // Use absolute URL to ensure it works in both dev and production
+    const resumeUrl = window.location.origin + '/resume.pdf';
     const link = document.createElement('a');
-    link.href = '/resume.pdf'; // Path to your actual resume PDF
+    link.href = resumeUrl;
     link.download = 'Athavan_Yokanathan_Resume.pdf'; // Suggested filename for download
+    link.target = '_blank'; // Open in new tab as fallback
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

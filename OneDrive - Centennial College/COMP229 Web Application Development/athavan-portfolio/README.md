@@ -223,3 +223,32 @@ To customize this portfolio for your own use:
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
+
+//How to Run
+
+1. **Fix MongoDB Connection:**
+   ```bash
+   # Update connection string in server.js or create .env file
+   ```
+
+2. **Initialize Admin User:**
+   ```bash
+   npm run init-admin
+   ```
+
+3. **Start Development Server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for Production:**
+   ```bash
+   npm run build
+
+
+To log in as admin
+First, fix MongoDB connection (update password in server.js)
+Run: npm run init-admin
+Sign in with:
+Email: admin@portfolio.com
+Password: admin123

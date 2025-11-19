@@ -1,5 +1,6 @@
 import User from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
+import mongoose from 'mongoose';
 
 // Get all users
 export const getAllUsers = async (req, res) => {
@@ -27,7 +28,19 @@ export const getUserById = async (req, res) => {
 // Create new user
 export const createUser = async (req, res) => {
   try {
+    // Check if MongoDB is connected
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(503).json({ 
+        message: 'Database connection not available. Please check MongoDB connection settings.' 
+      });
+    }
+
     const { name, email, password } = req.body;
+    
+    // Validate required fields
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'Name, email, and password are required' });
+    }
     
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -47,7 +60,11 @@ export const createUser = async (req, res) => {
     
     res.status(201).json(userResponse);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    // Handle duplicate email error
+    if (error.code === 11000) {
+      return res.status(400).json({ message: 'Email already exists. Please use a different email.' });
+    }
+    res.status(400).json({ message: error.message || 'Failed to create user' });
   }
 };
 
@@ -100,4 +117,8 @@ export const deleteAllUsers = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+
+
 

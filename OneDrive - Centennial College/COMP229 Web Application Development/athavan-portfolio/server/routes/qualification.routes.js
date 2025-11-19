@@ -7,26 +7,27 @@ import {
   deleteQualification,
   deleteAllQualifications
 } from '../controllers/qualification.controller.js';
+import { verifyToken, requireAdmin } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
-// GET api/qualifications - get all qualifications
+// GET api/qualifications - get all qualifications (public - anyone can view)
 router.get('/', getAllQualifications);
 
-// GET api/qualifications/:id - get qualification by id
+// GET api/qualifications/:id - get qualification by id (public - anyone can view)
 router.get('/:id', getQualificationById);
 
-// POST api/qualifications - add new qualification
-router.post('/', createQualification);
+// POST api/qualifications - add new qualification (requires admin)
+router.post('/', verifyToken, requireAdmin, createQualification);
 
-// PUT api/qualifications/:id - update qualification by id
-router.put('/:id', updateQualification);
+// PUT api/qualifications/:id - update qualification by id (requires admin)
+router.put('/:id', verifyToken, requireAdmin, updateQualification);
 
-// DELETE api/qualifications - remove all qualifications (must be before /:id route)
-router.delete('/', deleteAllQualifications);
+// DELETE api/qualifications - remove all qualifications (requires admin)
+router.delete('/', verifyToken, requireAdmin, deleteAllQualifications);
 
-// DELETE api/qualifications/:id - remove qualification by id
-router.delete('/:id', deleteQualification);
+// DELETE api/qualifications/:id - remove qualification by id (requires admin)
+router.delete('/:id', verifyToken, requireAdmin, deleteQualification);
 
 export default router;
 

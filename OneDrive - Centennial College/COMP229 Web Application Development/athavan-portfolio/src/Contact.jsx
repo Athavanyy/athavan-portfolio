@@ -1,42 +1,60 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { contactsAPI } from "./utils/api";
 
 export default function Contact() {
   // State management for form data
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    lastname: "",
     email: "",
-    phone: "",
-    message: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const navigate = useNavigate();
 
   // Function to update form values as user types
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setError("");
+    setSuccess("");
   }
 
   // Function to handle form submission
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    setError("");
+    setSuccess("");
+    setLoading(true);
 
     // Basic form validation
-    if (!form.firstName || !form.email || !form.message) {
-      alert("Please fill in your first name, email, and message.");
+    if (!form.firstname || !form.email) {
+      setError("Please fill in your first name and email.");
+      setLoading(false);
       return;
     }
 
-    // Save form submission to localStorage (simulating backend storage)
-    const submissions = JSON.parse(localStorage.getItem("contacts") || "[]");
-    submissions.push({ ...form, date: new Date().toLocaleString() });
-    localStorage.setItem("contacts", JSON.stringify(submissions));
-
-    alert("Message sent successfully!");
-
-    // Redirect back to Home page after successful submission
-    navigate("/");
+    try {
+      await contactsAPI.create({
+        firstname: form.firstname,
+        lastname: form.lastname || "",
+        email: form.email
+      });
+      
+      setSuccess("Message sent successfully!");
+      setForm({ firstname: "", lastname: "", email: "" });
+      
+      // Redirect back to Home page after successful submission
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
+    } catch (err) {
+      setError(err.message || "Failed to send message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -85,20 +103,22 @@ export default function Contact() {
           {/* Contact Form Section */}
           <div className="contact-form-section">
             <h3>Send Me a Message</h3>
+            {error && <div className="error-message">{error}</div>}
+            {success && <div className="success-message">{success}</div>}
             <form onSubmit={handleSubmit} className="contact-form">
               <div className="form-row">
                 <input 
-                  name="firstName" 
+                  name="firstname" 
                   placeholder="First Name" 
-                  value={form.firstName} 
+                  value={form.firstname} 
                   onChange={handleChange} 
                   required 
                   className="form-input"
                 />
                 <input 
-                  name="lastName" 
+                  name="lastname" 
                   placeholder="Last Name" 
-                  value={form.lastName} 
+                  value={form.lastname} 
                   onChange={handleChange} 
                   className="form-input"
                 />
@@ -114,27 +134,14 @@ export default function Contact() {
                   required 
                   className="form-input"
                 />
-                <input 
-                  name="phone" 
-                  placeholder="Phone Number" 
-                  value={form.phone} 
-                  onChange={handleChange} 
-                  className="form-input"
-                />
               </div>
               
-              <textarea 
-                name="message" 
-                placeholder="Your Message" 
-                rows="6" 
-                value={form.message} 
-                onChange={handleChange} 
-                required 
-                className="form-textarea"
-              />
-              
-              <button type="submit" className="submit-button">
-                Send Message
+              <button 
+                type="submit" 
+                className="submit-button"
+                disabled={loading}
+              >
+                {loading ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>
