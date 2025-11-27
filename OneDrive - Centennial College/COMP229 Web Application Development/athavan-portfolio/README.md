@@ -252,3 +252,90 @@ Run: npm run init-admin
 Sign in with:
 Email: admin@portfolio.com
 Password: admin123
+
+## Testing Strategy (Part I)
+
+| Test Type | Command | What it Covers | Evidence to Capture |
+| --- | --- | --- | --- |
+| Unit (Vitest) | `npm run test` | Interactive calculator logic, keyboard/delete/clear flows | Screenshot of terminal output showing `2 passed` |
+| E2E (Cypress) | `npm run test:e2e` | Full navigation Home → Projects → Contact, mocked contact submission, redirect to Home | AI Cypress video is generated at `cypress/videos/portfolio.cy.js.mp4`. Take a screenshot of the Cypress summary table |
+
+Additional tips:
+- The Cypress run already records a video; upload it alongside the Word document if AI Cypress requires a recording.
+- To capture the requested snapshot of the Cypress test page, run `npm run cy:open`, execute the suite, and use the built-in screenshot button.
+- If you need to re-run only the unit suite interactively, use `npm run test:watch`.
+
+## Performance Optimization (Part II)
+
+The following changes were implemented to improve perceived performance and bundle size:
+
+1. **Route-Level Code Splitting** – `App.jsx` now lazy-loads all non-home pages behind a `<Suspense>` boundary, trimming the initial JavaScript shipped to first-time visitors.
+2. **Shared Project Data Module** – `Projects.jsx` and `ProjectDetail.jsx` pull from a single `src/data/projects.js`, removing duplicated JSON blobs and reducing parsing work.
+3. **Client-Side Navigation for Project Cards** – Replaced external anchors with React Router `Link` components, preventing full page reloads when moving to individual projects.
+4. **Lightweight Loading State** – Added an accessible `.page-loading` placeholder that keeps layout stable while lazily loaded routes stream in.
+
+How to validate:
+1. Build and preview the site locally:  
+   ```
+   npm run build
+   npm run preview
+   ```
+2. Run Lighthouse (Chrome DevTools → Lighthouse) against `http://localhost:4173` and verify the Performance score improvement compared to the pre-change baseline.
+3. Optionally run `npm run lint` to ensure no regressions in best practices.
+
+## Deployment Guide (Part III)
+
+1. **Build Artifacts**
+   ```bash
+   npm run build
+   ```
+   The optimized assets live in `dist/`.
+
+2. **Recommended Hosting: Vercel**
+   - Create a new project from the GitHub repo `Athavanyy/athavan-portfolio`.
+   - Build command: `npm run build`
+   - Output directory: `dist`
+   - Add environment variables if needed (e.g., `VITE_API_BASE_URL` later, currently hard-coded to `http://localhost:3000/api`).
+
+3. **Alternative Hosting: Netlify**
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+   - Enable automatic deploys from `main`.
+
+4. **Backend Hosting**
+   - Provision a free Render or Railway Node service.
+   - Set `PORT=3000` (or update `src/utils/api.js` + deployment instructions if you change it).
+   - Add `MONGODB_URI` from MongoDB Atlas (user/password in `.env` rather than checked into `server.js`).
+
+5. **Submission Links** *(update the placeholders once deployed)*
+   - Frontend URL: `https://<your-vercel-subdomain>.vercel.app`
+   - Backend URL: `https://<your-render-instance>.onrender.com`
+
+After deployment, refresh the live URL to verify the CI/CD step and take “before vs. after” screenshots for Part IV.
+
+## CI/CD Walkthrough (Part IV)
+
+1. Create a feature branch: `git checkout -b chore/update-home-copy`.
+2. Add a short paragraph to any page (e.g., update `Home.jsx` mission statement).
+3. Run the automated checks locally:
+   ```bash
+   npm run lint
+   npm run test
+   npm run test:e2e   # optional but recommended before merging
+   ```
+4. Commit and push: `git commit -am "chore: refresh mission copy"` followed by `git push origin chore/update-home-copy`.
+5. Open a Pull Request targeting `main`, review, and merge.
+6. Wait for your hosting provider to redeploy, then refresh the live URL to confirm the change.
+7. Capture **two** screenshots for the Word document: one before the change (cached or staging link) and one after the merged deployment.
+
+## Submission Checklist
+
+1. ✅ Link to deployed frontend (Part III)  
+2. ✅ Link to GitHub repository (`https://github.com/Athavanyy/athavan-portfolio`)  
+3. ✅ Word document that includes:
+   - Unit test CLI screenshot
+   - E2E test screenshot + Cypress recording link
+   - Performance notes (e.g., Lighthouse report)
+   - Deployment before/after screenshots demonstrating CI/CD refresh
+
+Fill in the placeholders above once you have the final deployed URLs and screenshots.

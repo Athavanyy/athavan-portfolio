@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { authAPI } from '../utils/api';
 
@@ -25,10 +26,11 @@ export const AuthProvider = ({ children }) => {
       if (storedToken && storedUser) {
         try {
           // Verify token is still valid
-          const response = await authAPI.verifyToken();
+          await authAPI.verifyToken();
           setToken(storedToken);
           setUser(JSON.parse(storedUser));
         } catch (error) {
+          console.error('Token validation failed:', error);
           // Token invalid, clear storage
           localStorage.removeItem('token');
           localStorage.removeItem('user');
@@ -43,29 +45,21 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const signUp = async (userData) => {
-    try {
-      const response = await authAPI.signUp(userData);
-      // After signup, automatically sign in
-      return await signIn(userData.email, userData.password);
-    } catch (error) {
-      throw error;
-    }
+    await authAPI.signUp(userData);
+    // After signup, automatically sign in
+    return signIn(userData.email, userData.password);
   };
 
   const signIn = async (email, password) => {
-    try {
-      const response = await authAPI.signIn(email, password);
-      const { token: newToken, user: userData } = response;
-      
-      setToken(newToken);
-      setUser(userData);
-      localStorage.setItem('token', newToken);
-      localStorage.setItem('user', JSON.stringify(userData));
-      
-      return response;
-    } catch (error) {
-      throw error;
-    }
+    const response = await authAPI.signIn(email, password);
+    const { token: newToken, user: userData } = response;
+    
+    setToken(newToken);
+    setUser(userData);
+    localStorage.setItem('token', newToken);
+    localStorage.setItem('user', JSON.stringify(userData));
+    
+    return response;
   };
 
   const signOut = async () => {

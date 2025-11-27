@@ -21,7 +21,8 @@ export const verifyToken = async (req, res, next) => {
     
     next();
   } catch (error) {
-    return res.status(401).json({ message: 'Unauthorized: Invalid token' });
+    console.error('verifyToken middleware error:', error);
+    return res.status(401).json({ message: 'Unauthorized: Invalid token', error: error.message });
   }
 };
 
@@ -38,6 +39,7 @@ export const requireAdmin = async (req, res, next) => {
     
     next();
   } catch (error) {
+    console.error('requireAdmin middleware error:', error);
     return res.status(500).json({ message: error.message });
   }
 };
@@ -50,6 +52,7 @@ export const requireAuth = async (req, res, next) => {
     }
     next();
   } catch (error) {
+    console.error('requireAuth middleware error:', error);
     return res.status(500).json({ message: error.message });
   }
 };

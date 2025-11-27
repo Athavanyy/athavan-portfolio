@@ -28,7 +28,7 @@ export default function ProjectForm() {
       const data = await projectsAPI.getAll();
       setProjects(data);
     } catch (err) {
-      setError('Failed to load projects');
+      setError(err.message || 'Failed to load projects');
     } finally {
       setLoading(false);
     }

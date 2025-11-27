@@ -30,7 +30,7 @@ export default function Dashboard() {
       setProjects(projectsData);
       setQualifications(qualificationsData);
     } catch (err) {
-      setError('Failed to load data');
+      setError(err.message || 'Failed to load data');
     } finally {
       setLoading(false);
     }

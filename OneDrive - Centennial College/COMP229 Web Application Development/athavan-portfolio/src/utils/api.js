@@ -1,5 +1,5 @@
 // API utility functions for backend communication
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
 
 // Get auth token from localStorage
 const getToken = () => {
@@ -35,7 +35,7 @@ const apiRequest = async (endpoint, options = {}) => {
       try {
         const data = await response.json();
         errorMessage = data.message || errorMessage;
-      } catch (e) {
+      } catch {
         errorMessage = `Server error: ${response.status} ${response.statusText}`;
       }
       throw new Error(errorMessage);

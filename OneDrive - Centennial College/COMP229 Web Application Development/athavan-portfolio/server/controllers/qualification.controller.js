@@ -82,3 +82,6 @@ export const deleteAllQualifications = async (req, res) => {
 
 
 
+
+
+

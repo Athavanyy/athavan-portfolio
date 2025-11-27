@@ -1,38 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { projects } from "./data/projects";
 
 export default function Projects() {
-  // Project data array containing information about each project
-  const projects = [
-    {
-      id: 1,
-      title: "Personal Portfolio Website",
-      description: "A responsive personal portfolio website showcasing my projects and skills. Built using HTML5, CSS3, and vanilla JavaScript with modern design principles.",
-      image: "https://via.placeholder.com/400x250/74ebd5/ffffff?text=Portfolio+Website",
-      role: "Frontend Developer",
-      outcome: "Created a professional portfolio that effectively showcases my work and skills to potential employers and clients.",
-      technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design"]
-    },
-    {
-      id: 2,
-      title: "Interactive Calculator",
-      description: "A fully functional calculator application with a clean, modern interface. Features basic arithmetic operations and a responsive design that works on all devices.",
-      image: "https://via.placeholder.com/400x250/9face6/ffffff?text=Calculator+App",
-      role: "Frontend Developer",
-      outcome: "Developed a user-friendly calculator that demonstrates strong JavaScript programming skills and CSS styling abilities.",
-      technologies: ["HTML5", "CSS3", "JavaScript", "DOM Manipulation"]
-    },
-    {
-      id: 3,
-      title: "To-Do List Application",
-      description: "A simple yet effective to-do list application that allows users to add, edit, delete, and mark tasks as complete. Features local storage for data persistence.",
-      image: "https://via.placeholder.com/400x250/2b2d42/ffffff?text=To-Do+List",
-      role: "Frontend Developer",
-      outcome: "Built a practical application that demonstrates understanding of JavaScript fundamentals, DOM manipulation, and local storage usage.",
-      technologies: ["HTML5", "CSS3", "JavaScript", "Local Storage"]
-    }
-  ];
-
   return (
     <div className="projects-container">
       <div className="projects-content">
@@ -47,18 +17,13 @@ export default function Projects() {
               <div className="project-image">
                 <img src={project.image} alt={project.title} />
               </div>
-              
+
               <div className="project-content">
-                <a 
-                  href={`/projects/${project.id}`} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="project-title-link"
-                >
+                <Link to={`/projects/${project.id}`} className="project-title-link">
                   <h3 className="project-title">{project.title}</h3>
-                </a>
+                </Link>
                 <p className="project-description">{project.description}</p>
-                
+
                 <div className="project-details">
                   <div className="project-role">
                     <strong>My Role:</strong> {project.role}
@@ -67,12 +32,14 @@ export default function Projects() {
                     <strong>Outcome:</strong> {project.outcome}
                   </div>
                 </div>
-                
+
                 <div className="project-technologies">
                   <strong>Technologies Used:</strong>
                   <div className="tech-tags">
                     {project.technologies.map((tech, index) => (
-                      <span key={index} className="tech-tag">{tech}</span>
+                      <span key={index} className="tech-tag">
+                        {tech}
+                      </span>
                     ))}
                   </div>
                 </div>

@@ -28,7 +28,7 @@ export default function EducationForm() {
       const data = await qualificationsAPI.getAll();
       setQualifications(data);
     } catch (err) {
-      setError('Failed to load qualifications');
+      setError(err.message || 'Failed to load qualifications');
     } finally {
       setLoading(false);
     }

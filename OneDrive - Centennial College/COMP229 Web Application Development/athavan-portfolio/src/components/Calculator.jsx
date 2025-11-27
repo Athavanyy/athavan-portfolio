@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 export default function Calculator() {
   const [display, setDisplay] = useState('0');
@@ -6,16 +6,18 @@ export default function Calculator() {
   const [operation, setOperation] = useState(null);
   const [waitingForOperand, setWaitingForOperand] = useState(false);
 
-  const inputNumber = (num) => {
+  const inputNumber = useCallback((num) => {
     if (waitingForOperand) {
       setDisplay(String(num));
       setWaitingForOperand(false);
-    } else {
-      setDisplay(display === '0' ? String(num) : display + num);
+      return;
     }
-  };
+    setDisplay((currentDisplay) =>
+      currentDisplay === '0' ? String(num) : currentDisplay + num
+    );
+  }, [waitingForOperand]);
 
-  const inputOperation = (nextOperation) => {
+  const inputOperation = useCallback((nextOperation) => {
     const inputValue = parseFloat(display);
 
     if (previousValue === null) {
@@ -30,7 +32,7 @@ export default function Calculator() {
 
     setWaitingForOperand(true);
     setOperation(nextOperation);
-  };
+  }, [display, operation, previousValue]);
 
   const calculate = (firstValue, secondValue, operation) => {
     switch (operation) {
@@ -47,7 +49,7 @@ export default function Calculator() {
     }
   };
 
-  const performCalculation = () => {
+  const performCalculation = useCallback(() => {
     const inputValue = parseFloat(display);
 
     if (previousValue !== null && operation) {
@@ -57,31 +59,31 @@ export default function Calculator() {
       setOperation(null);
       setWaitingForOperand(true);
     }
-  };
+  }, [display, operation, previousValue]);
 
-  const clear = () => {
+  const clear = useCallback(() => {
     setDisplay('0');
     setPreviousValue(null);
     setOperation(null);
     setWaitingForOperand(false);
-  };
+  }, []);
 
-  const inputDecimal = () => {
+  const inputDecimal = useCallback(() => {
     if (waitingForOperand) {
       setDisplay('0.');
       setWaitingForOperand(false);
     } else if (display.indexOf('.') === -1) {
       setDisplay(display + '.');
     }
-  };
+  }, [display, waitingForOperand]);
 
-  const deleteLast = () => {
+  const deleteLast = useCallback(() => {
     if (display.length > 1) {
       setDisplay(display.slice(0, -1));
     } else {
       setDisplay('0');
     }
-  };
+  }, [display]);
 
   // Keyboard support
   useEffect(() => {
@@ -114,11 +116,16 @@ export default function Calculator() {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [display, previousValue, operation, waitingForOperand]);
+  }, [inputNumber, inputDecimal, inputOperation, performCalculation, clear, deleteLast]);
 
   return (
     <div className="calculator">
-      <div className="calculator-display">
+      <div
+        className="calculator-display"
+        role="status"
+        aria-live="polite"
+        data-testid="calculator-display"
+      >
         {display}
       </div>
       <div className="calculator-buttons">

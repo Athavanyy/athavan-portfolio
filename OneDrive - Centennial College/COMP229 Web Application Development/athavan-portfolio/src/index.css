@@ -18,6 +18,15 @@ body {
   flex-direction: column;
 }
 
+.page-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  font-size: 1.25rem;
+  color: #2b2d42;
+}
+
 /* Navigation Bar Styles */
 .navbar {
   display: flex;
