@@ -5,13 +5,13 @@ export default function Education() {
   const educationData = [
     {
       id: 1,
-      degree: "Software Engineering Technology Diploma",
+      degree: "Software Engineering Technology, Advanced Diploma",
       institution: "Centennial College",
       location: "Toronto, Canada",
-      startDate: "2024",
+      startDate: "2022",
       endDate: "2027",
       status: "In Progress",
-      description: "Currently pursuing a comprehensive software engineering technology diploma covering programming fundamentals, software architecture, database design, and project management."
+      description: "Currently pursuing a comprehensive software engineering technology diploma covering programming fundamentals, software architecture, database design, and project management. Cumulative GPA: 3.64/4.5."
     },
     {
       id: 2,

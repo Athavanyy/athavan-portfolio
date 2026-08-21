@@ -69,26 +69,22 @@ export default function Contact() {
             <div className="contact-details">
               <div className="contact-item">
                 <strong>Email:</strong>
-                <a href="mailto:athavan@example.com">athavan@example.com</a>
-              </div>
-              <div className="contact-item">
-                <strong>Phone:</strong>
-                <a href="tel:+1234567890">+1 (234) 567-890</a>
+                <a href="mailto:athavanyokanathan4@gmail.com">athavanyokanathan4@gmail.com</a>
               </div>
               <div className="contact-item">
                 <strong>Location:</strong>
-                <span>Markham, Canada</span>
+                <span>Toronto, Ontario</span>
               </div>
               <div className="contact-item">
                 <strong>LinkedIn:</strong>
-                <a href="https://linkedin.com/in/athavan" target="_blank" rel="noopener noreferrer">
-                  linkedin.com/in/athavan
+                <a href="https://www.linkedin.com/in/athavan-yokanathan-606213333/" target="_blank" rel="noopener noreferrer">
+                  linkedin.com/in/athavan-yokanathan
                 </a>
               </div>
               <div className="contact-item">
                 <strong>GitHub:</strong>
-                <a href="https://github.com/athavan" target="_blank" rel="noopener noreferrer">
-                  github.com/athavan
+                <a href="https://github.com/Athavanyy" target="_blank" rel="noopener noreferrer">
+                  github.com/Athavanyy
                 </a>
               </div>
             </div>
