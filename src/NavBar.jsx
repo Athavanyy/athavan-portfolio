@@ -10,24 +10,20 @@ export default function NavBar() {
 
   return (
     <header className="navbar">
-      {/* Custom Logo - Hexagon with initials */}
       <div className="logo">
         <div className="logo-shape">
-          <span className="logo-text">AP</span>
+          <span className="logo-text">AY</span>
         </div>
-        <span className="logo-name">Athavan Portfolio</span>
+        <span className="logo-name">Athavan Yokanathan</span>
       </div>
 
-      {/* Navigation Links */}
       <nav className="nav-links">
         <NavLink to="/" className="nav-link">Home</NavLink>
         <NavLink to="/about" className="nav-link">About</NavLink>
-        <NavLink to="/projects" className="nav-link">Projects</NavLink>
-        <NavLink to="/education" className="nav-link">Education</NavLink>
-        <NavLink to="/services" className="nav-link">Services</NavLink>
+        <NavLink to="/education" className="nav-link">Skills</NavLink>
+        <NavLink to="/projects" className="nav-link">Works</NavLink>
         <NavLink to="/contact" className="nav-link">Contact</NavLink>
-        
-        {/* Authentication Links */}
+
         {isAuthenticated() ? (
           <>
             <NavLink to="/project-form" className="nav-link">My Projects</NavLink>
