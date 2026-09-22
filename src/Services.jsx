@@ -6,30 +6,30 @@ export default function Services() {
     {
       id: 1,
       title: "Web Development",
-      description: "Custom website development using modern technologies like React, HTML5, CSS3, and JavaScript.",
+      description: "Designing and building professional websites and web apps with clean architecture, responsive layouts, and strong user experience.",
       image: "https://via.placeholder.com/300x200/74ebd5/ffffff?text=Web+Development",
-      features: ["Responsive Design", "SEO Optimization", "Performance Optimization", "Cross-browser Compatibility"]
+      features: ["Responsive Design", "SEO-Friendly Structure", "Performance Optimization", "User-Centered UX"]
     },
     {
       id: 2,
       title: "Frontend Development",
-      description: "Creating interactive and engaging user interfaces with React, Vue.js, and modern CSS frameworks.",
+      description: "Creating interactive, modern interfaces using React and JavaScript to deliver intuitive digital experiences.",
       image: "https://via.placeholder.com/300x200/9face6/ffffff?text=Frontend+Dev",
-      features: ["React Applications", "Component Architecture", "State Management", "User Experience Design"]
+      features: ["React Applications", "Component Architecture", "State Management", "Accessible Interfaces"]
     },
     {
       id: 3,
-      title: "Mobile App Development",
-      description: "Building mobile applications using React Native for cross-platform compatibility.",
-      image: "https://via.placeholder.com/300x200/2b2d42/ffffff?text=Mobile+Apps",
-      features: ["React Native", "iOS & Android", "App Store Deployment", "Performance Optimization"]
+      title: "Full-Stack Solutions",
+      description: "Building complete applications from frontend workflows to server-side logic, APIs, and database integration.",
+      image: "https://via.placeholder.com/300x200/2b2d42/ffffff?text=Full-Stack",
+      features: ["Node.js", "Express", "MongoDB", "REST API Integration"]
     },
     {
       id: 4,
-      title: "General Programming",
-      description: "Custom software solutions and automation scripts using various programming languages.",
-      image: "https://via.placeholder.com/300x200/ff6b6b/ffffff?text=Programming",
-      features: ["JavaScript", "Python", "Node.js", "API Development"]
+      title: "UI/UX & Prototyping",
+      description: "Turning ideas into polished interfaces through design thinking, wireframes, and usability-focused development.",
+      image: "https://via.placeholder.com/300x200/ff6b6b/ffffff?text=UI%2FUX",
+      features: ["Wireframing", "Design Consistency", "Usability Testing", "Interface Refinement"]
     }
   ];
 

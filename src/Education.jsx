@@ -11,7 +11,7 @@ export default function Education() {
       startDate: "2022",
       endDate: "2027",
       status: "In Progress",
-      description: "Currently pursuing a comprehensive software engineering technology diploma covering programming fundamentals, software architecture, database design, and project management. Cumulative GPA: 3.64/4.5."
+      description: "Currently pursuing a comprehensive software engineering technology diploma focused on programming fundamentals, software architecture, web development, database design, and systems analysis. Cumulative GPA: 3.64/4.5."
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ export default function Education() {
       startDate: "2018",
       endDate: "2022",
       status: "Completed",
-      description: "Graduated with honors, focusing on mathematics, science, and computer studies. Participated in programming competitions and coding clubs."
+      description: "Graduated with a strong academic foundation in mathematics, science, and computer studies, with exposure to problem-solving, technology, and project-based learning."
     }
   ];
 
@@ -63,7 +63,7 @@ export default function Education() {
 
         {/* Additional Certifications Section */}
         <div className="certifications-section">
-          <h3>Additional Certifications</h3>
+          <h3>Additional Certifications & Coursework</h3>
           <div className="certifications-grid">
             <div className="cert-item">
               <h4>React Developer Certification</h4>
@@ -76,6 +76,10 @@ export default function Education() {
             <div className="cert-item">
               <h4>Responsive Web Design</h4>
               <p>freeCodeCamp - 2023</p>
+            </div>
+            <div className="cert-item">
+              <h4>Relevant Coursework</h4>
+              <p>Web Development, Database Design, Software Design, OOP, Systems Analysis</p>
             </div>
           </div>
         </div>

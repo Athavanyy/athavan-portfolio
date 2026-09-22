@@ -36,24 +36,24 @@ export default function About() {
             
             <div className="about-description">
               <p>
-                I am a passionate software engineering student with a strong foundation in 
-                modern web development technologies. My journey in programming began with a 
-                curiosity about how digital applications work, and has evolved into a deep 
-                passion for creating efficient, user-friendly solutions.
+                I am a Software Engineering student with a strong interest in building modern,
+                user-focused web applications. My work is driven by a passion for turning ideas
+                into clean, responsive, and functional digital experiences that solve real-world
+                problems.
               </p>
               
               <p>
-                Currently pursuing my studies in software engineering, I have developed 
-                expertise in React, JavaScript, HTML, CSS, and various other technologies. 
-                I enjoy tackling complex problems and turning them into simple, beautiful 
-                solutions that provide real value to users.
+                Through my studies and personal projects, I have developed practical experience in
+                React, JavaScript, HTML, CSS, Node.js, and database-driven application development.
+                I enjoy working through complex logic, building intuitive interfaces, and creating
+                solutions that are both efficient and easy to use.
               </p>
               
               <p>
-                When I'm not coding, you can find me exploring new technologies, contributing 
-                to open-source projects, or working on personal projects that challenge my 
-                skills and expand my knowledge base. I believe in continuous learning and 
-                staying up-to-date with the latest industry trends.
+                I am especially interested in frontend development, full-stack web applications,
+                software design, and continuous learning. I am eager to contribute to impactful
+                projects, collaborate with teams, and keep growing as a developer in the tech
+                industry.
               </p>
             </div>
 
@@ -62,6 +62,16 @@ export default function About() {
               <button className="resume-button" onClick={handleResumeDownload}>
                 Download My Resume (PDF)
               </button>
+            </div>
+
+            <div className="highlights-section">
+              <h3>Professional Highlights</h3>
+              <ul className="highlights-list">
+                <li>Frontend and full-stack web development experience</li>
+                <li>Responsive design and accessibility-focused UI development</li>
+                <li>Strong problem-solving, teamwork, and project ownership</li>
+                <li>Passion for creating clean, maintainable software solutions</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -72,10 +82,14 @@ export default function About() {
           <div className="skills-grid">
             <div className="skill-item">React</div>
             <div className="skill-item">JavaScript</div>
-            <div className="skill-item">HTML/CSS</div>
+            <div className="skill-item">HTML5</div>
+            <div className="skill-item">CSS3</div>
             <div className="skill-item">Node.js</div>
-            <div className="skill-item">Git</div>
+            <div className="skill-item">Express</div>
+            <div className="skill-item">MongoDB</div>
+            <div className="skill-item">Git & GitHub</div>
             <div className="skill-item">Responsive Design</div>
+            <div className="skill-item">UI/UX Thinking</div>
           </div>
         </div>
       </div>

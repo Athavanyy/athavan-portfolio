@@ -31,10 +31,10 @@ export default function Home() {
         <div className="mission-section">
           <h2>My Mission</h2>
           <p className="mission-text">
-            To create innovative digital solutions that make a positive impact on people's lives. 
-            I am passionate about developing clean, efficient code and building user-friendly applications 
-            that solve real-world problems. My goal is to continuously learn and grow while contributing 
-            to meaningful projects that benefit society.
+            To build meaningful digital experiences through thoughtful design, efficient code,
+            and practical problem-solving. I am focused on creating responsive, accessible, and
+            user-friendly web applications that add value to people and businesses. I am committed
+            to learning continuously and contributing to projects that make a positive impact.
           </p>
         </div>
 
@@ -52,15 +52,15 @@ export default function Home() {
         <div className="stats-section">
           <div className="stat-item">
             <h3>3+</h3>
-            <p>Projects Completed</p>
+            <p>Projects Built</p>
           </div>
           <div className="stat-item">
             <h3>2+</h3>
             <p>Years Learning</p>
           </div>
           <div className="stat-item">
-            <h3>5+</h3>
-            <p>Technologies</p>
+            <h3>10+</h3>
+            <p>Skills & Tools</p>
           </div>
         </div>
       </div>
