@@ -31,3 +31,4 @@ cypress/videos
 *.sw?
 
 .vercel
+.env*
